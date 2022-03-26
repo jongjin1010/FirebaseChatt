@@ -6,19 +6,32 @@
     <data>
         <variable
             name="activity"
-            type="com.jjoh.firebasechatt.view.LoginActivity" />
+            type="com.jjoh.firebasechatt.view.RegActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.LoginActivity">
+        tools:context=".view.RegActivity">
+
+
 
         <EditText
-            android:id="@+id/putId"
+            android:id="@+id/regName"
             android:layout_width="319dp"
             android:layout_height="51dp"
-            android:layout_marginTop="384dp"
+            android:layout_marginTop="432dp"
+            android:fontFamily="@font/applesdgothicneol"
+            android:hint="닉네임을 입력하세요"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/regId"
+            android:layout_width="319dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="484dp"
             android:fontFamily="@font/applesdgothicneol"
             android:hint="아이디를 입력하세요"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,10 +39,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/putPw"
+            android:id="@+id/regPss"
             android:layout_width="319dp"
             android:layout_height="51dp"
-            android:layout_marginTop="456dp"
+            android:layout_marginTop="536dp"
             android:fontFamily="@font/applesdgothicneol"
             android:hint="비밀번호를 입력하세요"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,9 +53,9 @@
             android:id="@+id/goReg"
             android:layout_width="98dp"
             android:layout_height="17dp"
-            android:layout_marginBottom="68dp"
-            android:onClick="@{activity::goRegBtn}"
-            android:text="계정이 없나요?"
+            android:layout_marginBottom="36dp"
+            android:onClick="@{activity::goLoginBtn}"
+            android:text="로그인 하러가기"
             android:textAlignment="center"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,26 +64,36 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:layout_width="326dp"
-            android:layout_height="220dp"
-            android:layout_marginTop="96dp"
-            android:src="@drawable/login"
+            android:layout_width="349dp"
+            android:layout_height="195dp"
+            android:layout_marginTop="56dp"
+            android:src="@drawable/reg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/tryLogin"
+            android:id="@+id/tryReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="572dp"
+            android:layout_marginTop="616dp"
             android:fontFamily="@font/applesdgothicneol"
-            android:text="로그인"
-            android:onClick="@{activity::login}"
+            android:text="회원가입"
+            android:onClick="@{activity::tryReg}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/regProfileImg"
+            android:layout_width="155dp"
+            android:layout_height="135dp"
+            android:layout_marginTop="296dp"
+            android:layout_marginEnd="128dp"
+            android:onClick="@{activity::profileImg}"
+            android:src="@drawable/addphoto"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
