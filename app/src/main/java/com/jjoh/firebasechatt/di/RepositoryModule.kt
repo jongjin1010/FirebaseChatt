@@ -1,12 +1,11 @@
 package com.jjoh.firebasechatt.di
 
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.jjoh.firebasechatt.repository.remote.datasource.SignUpDataSource
-import com.jjoh.firebasechatt.repository.remote.datasourceimpl.SignUpDataSourceImpl
-import com.jjoh.firebasechatt.repository.remote.signup.SignUpRepository
-import com.jjoh.firebasechatt.repository.remote.signup.SignUpRepositoryImpl
+import com.jjoh.firebasechatt.repository.remote.signin.datasource.SignInDataSource
+import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepository
+import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepositoryImpl
+import com.jjoh.firebasechatt.repository.remote.signup.datasource.SignUpDataSource
+import com.jjoh.firebasechatt.repository.remote.signup.repository.SignUpRepository
+import com.jjoh.firebasechatt.repository.remote.signup.repository.SignUpRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,9 +20,19 @@ class RepositoryModule {
     @Singleton
     fun provideSignUpRepository(
         signUpDataSource: SignUpDataSource
-    ):SignUpRepository{
+    ): SignUpRepository {
         return SignUpRepositoryImpl(
             signUpDataSource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSignInRepository(
+        signInDataSource: SignInDataSource
+    ): SignInRepository {
+        return SignInRepositoryImpl(
+            signInDataSource
         )
     }
 }

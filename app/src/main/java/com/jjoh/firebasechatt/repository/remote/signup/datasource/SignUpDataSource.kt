@@ -1,4 +1,4 @@
-package com.jjoh.firebasechatt.repository.remote.datasource
+package com.jjoh.firebasechatt.repository.remote.signup.datasource
 
 import android.net.Uri
 import com.google.android.gms.tasks.Task

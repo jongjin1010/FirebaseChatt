@@ -31,10 +31,11 @@ class RegActivity : BaseActivity<ActivityRegBinding>(R.layout.activity_reg) {
 
     fun goLoginBtn(view: View) {
         startActivity(Intent(this, LoginActivity::class.java))
+        finish()
     }
 
     fun tryReg(view: View) {
-
+        binding.loading.visibility = View.VISIBLE
         val id = binding.regId.text.toString()
         val pss = binding.regPss.text.toString()
         val name = binding.regName.text.toString()
@@ -52,8 +53,8 @@ class RegActivity : BaseActivity<ActivityRegBinding>(R.layout.activity_reg) {
 
     private fun observe() {
         signUpViewModel.checkReg.observe(this) {
+            binding.loading.visibility = View.INVISIBLE
             shortShowToast("회원가입이 완료되었습니다")
-
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }

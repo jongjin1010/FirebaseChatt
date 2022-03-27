@@ -1,12 +1,10 @@
-package com.jjoh.firebasechatt.repository.remote.signup
+package com.jjoh.firebasechatt.repository.remote.signup.repository
 
 import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
-import com.jjoh.firebasechatt.remote.model.Friend
-import com.jjoh.firebasechatt.repository.remote.datasource.SignUpDataSource
+import com.jjoh.firebasechatt.repository.remote.signup.datasource.SignUpDataSource
 import javax.inject.Inject
 
 class SignUpRepositoryImpl @Inject constructor(

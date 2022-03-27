@@ -1,4 +1,4 @@
-package com.jjoh.firebasechatt.repository.remote.signup
+package com.jjoh.firebasechatt.repository.remote.signup.repository
 
 import android.icu.lang.UProperty
 import android.net.Uri

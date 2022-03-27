@@ -1,8 +1,7 @@
 package com.jjoh.firebasechatt.usecase
 
 import android.net.Uri
-import com.jjoh.firebasechatt.remote.model.Friend
-import com.jjoh.firebasechatt.repository.remote.signup.SignUpRepository
+import com.jjoh.firebasechatt.repository.remote.signup.repository.SignUpRepository
 import javax.inject.Inject
 
 class TryRegUseCase @Inject constructor(
