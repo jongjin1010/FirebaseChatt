@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jjoh.firebasechatt.usecase.TryLoginUseCase
-import com.jjoh.firebasechatt.usecase.TryRegUseCase
 import com.jjoh.firebasechatt.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,7 +23,7 @@ class SignInViewModel @Inject constructor(
         get() = _failLogin
 
     fun tryLogin(id: String, pw: String) = viewModelScope.launch {
-        tryLoginUseCase.tryLogin(id, pw).let {
+        tryLoginUseCase.execute(id, pw).let {
             it.addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     _checkLogin.call()

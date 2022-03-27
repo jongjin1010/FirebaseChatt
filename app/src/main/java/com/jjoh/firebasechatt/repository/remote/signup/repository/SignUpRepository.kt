@@ -11,7 +11,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
-import com.jjoh.firebasechatt.remote.model.Friend
 import javax.inject.Inject
 
 

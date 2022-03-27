@@ -7,5 +7,5 @@ import javax.inject.Inject
 class TryLoginUseCase @Inject constructor(
     private val signInRepository: SignInRepository
 ) {
-    suspend fun tryLogin(id: String, pss: String) = signInRepository.tryLogin(id, pss)
+    suspend fun execute(id: String, pss: String) = signInRepository.tryLogin(id, pss)
 }

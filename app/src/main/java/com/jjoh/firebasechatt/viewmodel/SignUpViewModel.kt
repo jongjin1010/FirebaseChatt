@@ -8,8 +8,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.jjoh.firebasechatt.remote.model.Friend
 import com.jjoh.firebasechatt.usecase.TryRegUseCase
+import com.jjoh.firebasechatt.view.model.Friend
 import com.jjoh.firebasechatt.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
