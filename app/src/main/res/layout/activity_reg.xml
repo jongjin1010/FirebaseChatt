@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activity"
-            type="com.jjoh.firebasechatt.view.RegActivity" />
+            type="com.jjoh.firebasechatt.view.login.RegActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.RegActivity">
+        tools:context=".view.login.RegActivity">
 
         <EditText
             android:id="@+id/regName"

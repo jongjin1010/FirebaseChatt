@@ -1,16 +1,12 @@
-package com.jjoh.firebasechatt.view
+package com.jjoh.firebasechatt.view.login
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.jjoh.firebasechatt.R
 import com.jjoh.firebasechatt.base.BaseActivity
 import com.jjoh.firebasechatt.databinding.ActivityLoginBinding
+import com.jjoh.firebasechatt.view.chat.MainActivity
 import com.jjoh.firebasechatt.viewmodel.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

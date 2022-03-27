@@ -1,4 +1,4 @@
-package com.jjoh.firebasechatt.view
+package com.jjoh.firebasechatt.view.login
 
 import android.Manifest
 import android.content.Intent
