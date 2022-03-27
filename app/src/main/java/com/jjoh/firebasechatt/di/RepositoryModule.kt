@@ -1,5 +1,8 @@
 package com.jjoh.firebasechatt.di
 
+import com.jjoh.firebasechatt.repository.remote.getlist.datasource.GetListDataSource
+import com.jjoh.firebasechatt.repository.remote.getlist.repository.GetListRepository
+import com.jjoh.firebasechatt.repository.remote.getlist.repository.GetListRepositoryImpl
 import com.jjoh.firebasechatt.repository.remote.signin.datasource.SignInDataSource
 import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepository
 import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepositoryImpl
@@ -33,6 +36,16 @@ class RepositoryModule {
     ): SignInRepository {
         return SignInRepositoryImpl(
             signInDataSource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetListRepository(
+        getListDataSource: GetListDataSource
+    ) : GetListRepository{
+        return GetListRepositoryImpl(
+            getListDataSource
         )
     }
 }

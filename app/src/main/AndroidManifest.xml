@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jjoh.firebasechatt">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".di.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".di.App"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.FirebaseChatt">
+        android:theme="@style/Theme.FirebaseChatt"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".view.chat.MessageActivity"
+            android:exported="true" />
         <activity
             android:name=".view.login.RegActivity"
             android:exported="true" />
         <activity
             android:name=".view.login.LoginActivity"
-            android:exported="true">
+            android:exported="true" />
 
-        </activity>
+
         <activity
             android:name=".view.chat.MainActivity"
             android:exported="true">

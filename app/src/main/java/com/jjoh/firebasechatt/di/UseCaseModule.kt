@@ -1,9 +1,11 @@
 package com.jjoh.firebasechatt.di
 
+import com.jjoh.firebasechatt.repository.remote.getlist.repository.GetListRepository
 import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepository
 import com.jjoh.firebasechatt.repository.remote.signup.repository.SignUpRepository
 import com.jjoh.firebasechatt.usecase.TryLoginUseCase
 import com.jjoh.firebasechatt.usecase.TryRegUseCase
+import com.jjoh.firebasechatt.usecase.TryGetListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,4 +23,8 @@ class UseCaseModule {
     @Provides
     @Singleton
     fun provideTryLoginUseCase(signInRepository: SignInRepository) = TryLoginUseCase(signInRepository)
+
+    @Provides
+    @Singleton
+    fun provideTryGetList(getListRepository: GetListRepository) = TryGetListUseCase(getListRepository)
 }

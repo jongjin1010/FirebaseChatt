@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import com.jjoh.firebasechatt.R
 import com.jjoh.firebasechatt.base.BaseFragment
 import com.jjoh.firebasechatt.databinding.FragmentChatBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class ChatFragment : BaseFragment<FragmentChatBinding>(R.layout.fragment_chat) {
 

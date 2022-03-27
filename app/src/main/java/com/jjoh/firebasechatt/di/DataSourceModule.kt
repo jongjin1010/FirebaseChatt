@@ -1,7 +1,10 @@
 package com.jjoh.firebasechatt.di
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.jjoh.firebasechatt.repository.remote.getlist.datasource.GetListDataSource
+import com.jjoh.firebasechatt.repository.remote.getlist.datasource.GetListDataSourceImpl
 import com.jjoh.firebasechatt.repository.remote.signup.datasource.SignUpDataSource
 import com.jjoh.firebasechatt.repository.remote.signin.datasource.SignInDataSource
 import com.jjoh.firebasechatt.repository.remote.signin.datasource.SignInDataSourceImpl
@@ -34,6 +37,18 @@ class DataSourceModule {
     ): SignInDataSource {
         return SignInDataSourceImpl(
             firebaseAuth
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetListDataSource(
+        firebaseAuth: FirebaseAuth,
+        fireBaseDataBase: FirebaseDatabase
+    ) : GetListDataSource {
+        return GetListDataSourceImpl(
+            firebaseAuth,
+            fireBaseDataBase
         )
     }
 }

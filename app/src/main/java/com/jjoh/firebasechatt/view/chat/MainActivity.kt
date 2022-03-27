@@ -4,8 +4,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jjoh.firebasechatt.R
 import com.jjoh.firebasechatt.base.BaseActivity
 import com.jjoh.firebasechatt.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var homeFragment: HomeFragment
@@ -14,6 +15,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun init() {
         binding.activity = this
+
         binding.bottomNav.setOnNavigationItemSelectedListener(bottomNavItemSelectedListener)
         homeFragment = HomeFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.fragments_frame, homeFragment).commit()

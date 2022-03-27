@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import com.jjoh.firebasechatt.R
 import com.jjoh.firebasechatt.base.BaseFragment
 import com.jjoh.firebasechatt.databinding.FragmentProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
 

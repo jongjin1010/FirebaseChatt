@@ -1,4 +1,4 @@
-package com.jjoh.firebasechatt.remote.model
+package com.jjoh.firebasechatt.view.model
 
 data class Friend(
     val email: String? = null,

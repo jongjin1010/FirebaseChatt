@@ -61,7 +61,8 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.4.1")
 
     //by viewModel
-    implementation 'androidx.activity:activity-ktx:1.4.0'
+    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
 
     // dagger hilt
     implementation 'com.google.dagger:hilt-android:2.41'
@@ -80,5 +81,8 @@ dependencies {
     // navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
 }
