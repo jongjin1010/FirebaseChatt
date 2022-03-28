@@ -43,11 +43,9 @@ class DataSourceModule {
     @Provides
     @Singleton
     fun provideGetListDataSource(
-        firebaseAuth: FirebaseAuth,
         fireBaseDataBase: FirebaseDatabase
     ) : GetListDataSource {
         return GetListDataSourceImpl(
-            firebaseAuth,
             fireBaseDataBase
         )
     }

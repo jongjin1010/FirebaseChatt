@@ -28,7 +28,7 @@
                 android:layout_marginBottom="5dp"
                 android:fontFamily="@font/applesdgothicneol"
                 android:text="친구"
-                android:textColor="#FFFF9800"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
