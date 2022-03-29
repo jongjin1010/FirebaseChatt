@@ -2,11 +2,14 @@ package com.jjoh.firebasechatt.di
 
 import com.jjoh.data.repository.remote.datasource.GetListDataSource
 import com.jjoh.data.repository.remote.GetListRepositoryImpl
+import com.jjoh.data.repository.remote.SetChatListRepositoryImpl
 import com.jjoh.data.repository.remote.datasource.SignInDataSource
 import com.jjoh.data.repository.remote.SignInRepositoryImpl
 import com.jjoh.data.repository.remote.datasource.SignUpDataSource
 import com.jjoh.data.repository.remote.SignUpRepositoryImpl
+import com.jjoh.data.repository.remote.datasource.SetChatListDataSource
 import com.jjoh.domain.repository.GetListRepository
+import com.jjoh.domain.repository.SetChatListRepository
 import com.jjoh.domain.repository.SignInRepository
 import com.jjoh.domain.repository.SignUpRepository
 import dagger.Module
@@ -46,6 +49,16 @@ class RepositoryModule {
     ) : GetListRepository {
         return GetListRepositoryImpl(
             getListDataSource
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetChatListRepository(
+        setChatListDataSource: SetChatListDataSource
+    ) : SetChatListRepository {
+        return SetChatListRepositoryImpl(
+            setChatListDataSource
         )
     }
 }

@@ -4,9 +4,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.jjoh.data.repository.remote.datasource.GetListDataSource
+import com.jjoh.data.repository.remote.datasource.SetChatListDataSource
 import com.jjoh.data.repository.remote.datasourceimpl.GetListDataSourceImpl
 import com.jjoh.data.repository.remote.datasource.SignUpDataSource
 import com.jjoh.data.repository.remote.datasource.SignInDataSource
+import com.jjoh.data.repository.remote.datasourceimpl.SetChatListDataSourceImpl
 import com.jjoh.data.repository.remote.datasourceimpl.SignInDataSourceImpl
 import com.jjoh.data.repository.remote.datasourceimpl.SignUpDataSourceImpl
 import dagger.Module
@@ -46,6 +48,16 @@ class DataSourceModule {
         fireBaseDataBase: FirebaseDatabase
     ) : GetListDataSource {
         return GetListDataSourceImpl(
+            fireBaseDataBase
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetChatListDataSource(
+        fireBaseDataBase: FirebaseDatabase
+    ) : SetChatListDataSource {
+        return SetChatListDataSourceImpl(
             fireBaseDataBase
         )
     }
