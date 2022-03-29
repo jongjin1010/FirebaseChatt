@@ -75,5 +75,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             recyclerView.adapter = RecyclerViewAdapter()
         }
+
+        getListViewModel.failure.observe(this) {
+            shortShowToast("목록을 불러오지 못했습니다")
+        }
     }
+
+
+
 }
