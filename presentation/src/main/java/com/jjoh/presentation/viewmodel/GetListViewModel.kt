@@ -40,6 +40,10 @@ class GetListViewModel @Inject constructor(
             }
             _success.call()
         }
+
+        tryGetListUseCase.execute().addOnCanceledListener {
+            _failure.call()
+        }
     }
 }
 
