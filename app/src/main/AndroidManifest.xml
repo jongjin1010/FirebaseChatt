@@ -14,28 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseChatt"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".view.chat.MessageActivity"
-            android:exported="true" />
-        <activity
-            android:name=".view.login.RegActivity"
-            android:exported="true" />
-        <activity
-            android:name=".view.login.LoginActivity"
-            android:exported="true" >
 
-        </activity>
-
-        <activity
-            android:name=".view.chat.MainActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

@@ -1,11 +1,11 @@
 package com.jjoh.firebasechatt.di
 
-import com.jjoh.firebasechatt.repository.remote.getlist.repository.GetListRepository
-import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepository
-import com.jjoh.firebasechatt.repository.remote.signup.repository.SignUpRepository
-import com.jjoh.firebasechatt.usecase.TryLoginUseCase
-import com.jjoh.firebasechatt.usecase.TryRegUseCase
-import com.jjoh.firebasechatt.usecase.TryGetListUseCase
+import com.jjoh.domain.repository.GetListRepository
+import com.jjoh.domain.repository.SignInRepository
+import com.jjoh.domain.repository.SignUpRepository
+import com.jjoh.domain.usecase.TryLoginUseCase
+import com.jjoh.domain.usecase.TryRegUseCase
+import com.jjoh.domain.usecase.TryGetListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

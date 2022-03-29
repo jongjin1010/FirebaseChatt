@@ -1,14 +1,14 @@
 package com.jjoh.firebasechatt.di
 
-import com.jjoh.firebasechatt.repository.remote.getlist.datasource.GetListDataSource
-import com.jjoh.firebasechatt.repository.remote.getlist.repository.GetListRepository
-import com.jjoh.firebasechatt.repository.remote.getlist.repository.GetListRepositoryImpl
-import com.jjoh.firebasechatt.repository.remote.signin.datasource.SignInDataSource
-import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepository
-import com.jjoh.firebasechatt.repository.remote.signin.repository.SignInRepositoryImpl
-import com.jjoh.firebasechatt.repository.remote.signup.datasource.SignUpDataSource
-import com.jjoh.firebasechatt.repository.remote.signup.repository.SignUpRepository
-import com.jjoh.firebasechatt.repository.remote.signup.repository.SignUpRepositoryImpl
+import com.jjoh.data.repository.remote.datasource.GetListDataSource
+import com.jjoh.data.repository.remote.GetListRepositoryImpl
+import com.jjoh.data.repository.remote.datasource.SignInDataSource
+import com.jjoh.data.repository.remote.SignInRepositoryImpl
+import com.jjoh.data.repository.remote.datasource.SignUpDataSource
+import com.jjoh.data.repository.remote.SignUpRepositoryImpl
+import com.jjoh.domain.repository.GetListRepository
+import com.jjoh.domain.repository.SignInRepository
+import com.jjoh.domain.repository.SignUpRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,7 +43,7 @@ class RepositoryModule {
     @Singleton
     fun provideGetListRepository(
         getListDataSource: GetListDataSource
-    ) : GetListRepository{
+    ) : GetListRepository {
         return GetListRepositoryImpl(
             getListDataSource
         )
