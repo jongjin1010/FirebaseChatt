@@ -48,6 +48,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_width="319dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="584dp"
+            android:fontFamily="@font/applesdgothicneol"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="* 영문, 숫자, 특수문자 포함의 6~12자리 이내"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/goReg"
             android:layout_width="98dp"
             android:layout_height="17dp"

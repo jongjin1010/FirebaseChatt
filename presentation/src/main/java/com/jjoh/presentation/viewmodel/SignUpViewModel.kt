@@ -25,6 +25,10 @@ class SignUpViewModel @Inject constructor(
     val checkReg: LiveData<Any>
         get() = _checkReg
 
+    private val _failure = SingleLiveEvent<Any>()
+    val failure: LiveData<Any>
+        get() = _failure
+
     fun tryReg(
         id: String, pss: String, name: String, imageUri: Uri?
     ) = viewModelScope.launch {
@@ -61,6 +65,8 @@ class SignUpViewModel @Inject constructor(
                 Firebase.database.reference.child("users").child(userIdSt).setValue(friend)
 
                 _checkReg.call()
+            }.addOnCanceledListener {
+                _failure.call()
             }
         }
     }

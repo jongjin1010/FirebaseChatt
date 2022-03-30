@@ -15,6 +15,7 @@ import com.jjoh.presentation.viewmodel.SignUpViewModel
 import com.jjoh.presentation.R
 import com.jjoh.presentation.databinding.ActivityRegBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.regex.Pattern
 
 @AndroidEntryPoint
 class RegActivity : BaseActivity<ActivityRegBinding>(R.layout.activity_reg) {
@@ -35,17 +36,26 @@ class RegActivity : BaseActivity<ActivityRegBinding>(R.layout.activity_reg) {
     }
 
     fun tryReg(view: View) {
-        binding.loading.visibility = View.VISIBLE
         val id = binding.regId.text.toString()
         val pss = binding.regPss.text.toString()
         val name = binding.regName.text.toString()
 
+        val pwPattern = "^.*(?=^.{6,12}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$"
+        val patterns = Pattern.compile(pwPattern)
+        val matcher = patterns.matcher(pss)
+
         if (id.isEmpty() && pss.isEmpty() && name.isEmpty() && !profileCheck) {
             shortShowToast("아이디와 비밀번호, 프로필 사진을 제대로 입력해주세요.")
             Log.d("PROFILE", "tryReg: $profileCheck")
+
         } else if (!profileCheck) {
             shortShowToast("프로필사진을 등록해주세요")
+
+        } else if (!matcher.find()){
+            shortShowToast("비밀번호 형식을 지켜주세요")
+
         } else {
+            binding.loading.visibility = View.VISIBLE
             Log.d("CHECK", "tryReg: $id, $pss")
             signUpViewModel.tryReg(id, pss, name, imageUri)
         }
@@ -57,6 +67,11 @@ class RegActivity : BaseActivity<ActivityRegBinding>(R.layout.activity_reg) {
             shortShowToast("회원가입이 완료되었습니다")
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+        }
+
+        signUpViewModel.failure.observe(this) {
+            binding.loading.visibility = View.INVISIBLE
+            shortShowToast("형식을 다시 확인해주세요ㅡ")
         }
     }
 
