@@ -1,13 +1,7 @@
 package com.jjoh.firebasechatt.di
 
-import com.jjoh.domain.repository.GetListRepository
-import com.jjoh.domain.repository.SetChatListRepository
-import com.jjoh.domain.repository.SignInRepository
-import com.jjoh.domain.repository.SignUpRepository
-import com.jjoh.domain.usecase.TryLoginUseCase
-import com.jjoh.domain.usecase.TryRegUseCase
-import com.jjoh.domain.usecase.TryGetListUseCase
-import com.jjoh.domain.usecase.TrySetChatListUseCase
+import com.jjoh.domain.repository.*
+import com.jjoh.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,17 +14,21 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideTryRegUseCase(signUpRepository: SignUpRepository) = TryRegUseCase(signUpRepository)
+    fun provideTryRegUseCase(signUpRepository: SignUpRepository) = RegUseCase(signUpRepository)
 
     @Provides
     @Singleton
-    fun provideTryLoginUseCase(signInRepository: SignInRepository) = TryLoginUseCase(signInRepository)
+    fun provideTryLoginUseCase(signInRepository: SignInRepository) = LoginUseCase(signInRepository)
 
     @Provides
     @Singleton
-    fun provideTryGetList(getListRepository: GetListRepository) = TryGetListUseCase(getListRepository)
+    fun provideTryGetList(homeRepository: HomeRepository) = HomeUseCase(homeRepository)
 
     @Provides
     @Singleton
-    fun provideTrySetChatList(setChatListRepository: SetChatListRepository) = TrySetChatListUseCase(setChatListRepository)
+    fun provideTrySetChatList(chatListRepository: ChatListRepository) = ChatListUseCase(chatListRepository)
+
+    @Provides
+    @Singleton
+    fun provideProfileRepository(profileRepository: ProfileRepository) = ProfileUseCase(profileRepository)
 }

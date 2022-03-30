@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jjoh.presentation.base.BaseFragment
-import com.jjoh.presentation.viewmodel.GetListViewModel
+import com.jjoh.presentation.viewmodel.HomeViewModel
 import com.jjoh.presentation.widget.utils.Utils.friend
 import com.jjoh.presentation.R
 import com.jjoh.presentation.databinding.FragmentHomeBinding
@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
-    private val getListViewModel by activityViewModels<GetListViewModel>()
+    private val getListViewModel by activityViewModels<HomeViewModel>()
 
     companion object {
         fun newInstance(): HomeFragment { return HomeFragment() }

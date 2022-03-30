@@ -1,8 +1,8 @@
-package com.jjoh.domain.repository
+package com.jjoh.data.repository.remote.datasource
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 
-interface GetListRepository {
+interface HomeDataSource {
     suspend fun tryGetList(): Task<DataSnapshot>
 }

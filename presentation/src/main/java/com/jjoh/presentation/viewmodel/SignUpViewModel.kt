@@ -8,7 +8,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.jjoh.domain.usecase.TryRegUseCase
+import com.jjoh.domain.usecase.RegUseCase
 import com.jjoh.presentation.view.model.Friend
 import com.jjoh.presentation.widget.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val tryRegUseCase: TryRegUseCase
+    private val regUseCase: RegUseCase
 ) : ViewModel() {
     lateinit var database: DatabaseReference
 
@@ -28,7 +28,7 @@ class SignUpViewModel @Inject constructor(
     fun tryReg(
         id: String, pss: String, name: String, imageUri: Uri?
     ) = viewModelScope.launch {
-        tryRegUseCase.execute1(id, pss, name, imageUri).let {
+        regUseCase.executeReg(id, pss, name, imageUri).let {
             it.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val user = Firebase.auth.currentUser
@@ -43,7 +43,7 @@ class SignUpViewModel @Inject constructor(
     private fun putUser(
         id: String, name: String, userIdSt: String, imageUri: Uri?
     ) = viewModelScope.launch {
-            tryRegUseCase.execute2(userIdSt, imageUri).let {
+            regUseCase.executePutUser(userIdSt, imageUri).let {
                 it.addOnSuccessListener {
                     setUser(id, name, userIdSt, imageUri)
                 }
@@ -53,7 +53,7 @@ class SignUpViewModel @Inject constructor(
     private fun setUser(
         id: String, name: String, userIdSt: String, imageUri: Uri?
     ) = viewModelScope.launch {
-        tryRegUseCase.execute3(userIdSt).let { task ->
+        regUseCase.executeSetUser(userIdSt).let { task ->
             task.addOnSuccessListener {
                 val userProfile: Uri? = it
                 val friend = Friend(id, name, userProfile.toString(), userIdSt)

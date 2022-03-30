@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.database.ktx.getValue
-import com.jjoh.domain.usecase.TrySetChatListUseCase
+import com.jjoh.domain.usecase.ChatListUseCase
 import com.jjoh.presentation.view.model.ChatModel
-import com.jjoh.presentation.view.model.Friend
 import com.jjoh.presentation.widget.utils.SingleLiveEvent
 import com.jjoh.presentation.widget.utils.Utils.chatModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChatListViewModel @Inject constructor(
-    private val trySetChatListUseCase: TrySetChatListUseCase
+    private val chatListUseCase: ChatListUseCase
 ) : ViewModel() {
 
     private val _success = SingleLiveEvent<Any>()
@@ -27,14 +26,15 @@ class ChatListViewModel @Inject constructor(
         get() = _failure
 
     fun getAllUid(uid: String?) = viewModelScope.launch {
-        trySetChatListUseCase.execute(uid).addOnSuccessListener { snapshot ->
+        chatListUseCase.execute(uid).addOnSuccessListener { snapshot ->
             chatModel.clear()
-            for(data in snapshot.children){
+            for (data in snapshot.children) {
                 chatModel.add(data.getValue<ChatModel>()!!)
                 println(data)
             }
-
             _success.call()
+        }.addOnCanceledListener {
+            _failure.call()
         }
     }
 }

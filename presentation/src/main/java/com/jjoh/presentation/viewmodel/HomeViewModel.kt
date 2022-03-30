@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.jjoh.domain.usecase.TryGetListUseCase
+import com.jjoh.domain.usecase.HomeUseCase
 import com.jjoh.presentation.view.model.Friend
 import com.jjoh.presentation.widget.utils.SingleLiveEvent
 import com.jjoh.presentation.widget.utils.Utils.friend
@@ -15,8 +15,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GetListViewModel @Inject constructor(
-    private val tryGetListUseCase: TryGetListUseCase
+class HomeViewModel @Inject constructor(
+    private val homeUseCase: HomeUseCase
 ) : ViewModel() {
 
     private val _success = SingleLiveEvent<Any>()
@@ -28,7 +28,7 @@ class GetListViewModel @Inject constructor(
         get() = _failure
 
     fun tryGetList() = viewModelScope.launch {
-        tryGetListUseCase.execute().addOnSuccessListener { snapshot ->
+        homeUseCase.execute().addOnSuccessListener { snapshot ->
             val myUid = Firebase.auth.currentUser?.uid.toString()
             friend.clear()
             for (data in snapshot.children) {
@@ -41,7 +41,7 @@ class GetListViewModel @Inject constructor(
             _success.call()
         }
 
-        tryGetListUseCase.execute().addOnCanceledListener {
+        homeUseCase.execute().addOnCanceledListener {
             _failure.call()
         }
     }

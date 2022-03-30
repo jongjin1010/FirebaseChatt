@@ -3,14 +3,8 @@ package com.jjoh.firebasechatt.di
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import com.jjoh.data.repository.remote.datasource.GetListDataSource
-import com.jjoh.data.repository.remote.datasource.SetChatListDataSource
-import com.jjoh.data.repository.remote.datasourceimpl.GetListDataSourceImpl
-import com.jjoh.data.repository.remote.datasource.SignUpDataSource
-import com.jjoh.data.repository.remote.datasource.SignInDataSource
-import com.jjoh.data.repository.remote.datasourceimpl.SetChatListDataSourceImpl
-import com.jjoh.data.repository.remote.datasourceimpl.SignInDataSourceImpl
-import com.jjoh.data.repository.remote.datasourceimpl.SignUpDataSourceImpl
+import com.jjoh.data.repository.remote.datasource.*
+import com.jjoh.data.repository.remote.datasourceimpl.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,21 +38,32 @@ class DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideGetListDataSource(
+    fun provideHomeDataSource(
         fireBaseDataBase: FirebaseDatabase
-    ) : GetListDataSource {
-        return GetListDataSourceImpl(
+    ) : HomeDataSource {
+        return HomeDataSourceImpl(
             fireBaseDataBase
         )
     }
 
     @Provides
     @Singleton
-    fun provideSetChatListDataSource(
+    fun provideChatListDataSource(
         fireBaseDataBase: FirebaseDatabase
-    ) : SetChatListDataSource {
-        return SetChatListDataSourceImpl(
+    ) : ChatListDataSource {
+        return ChatListDataSourceImpl(
             fireBaseDataBase
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileDataSource(
+        fireBaseDataBase: FirebaseDatabase,
+        firebaseStorage: FirebaseStorage
+    ) : ProfileDataSource {
+        return ProfileDataSourceImpl(
+            fireBaseDataBase, firebaseStorage
         )
     }
 }

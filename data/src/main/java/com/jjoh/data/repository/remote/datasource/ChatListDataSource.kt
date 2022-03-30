@@ -1,9 +1,8 @@
-package com.jjoh.domain.repository
+package com.jjoh.data.repository.remote.datasource
 
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 
-interface SetChatListRepository {
-
+interface ChatListDataSource {
     suspend fun getAllUid(uid: String?): Task<DataSnapshot>
 }
