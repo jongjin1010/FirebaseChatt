@@ -37,6 +37,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
         private val uid = Firebase.auth.currentUser?.uid.toString()
         private val fireDatabase = FirebaseDatabase.getInstance().reference
         var changedName: String? = null
+
         fun newInstance(): ProfileFragment {
             return ProfileFragment()
         }
@@ -101,14 +102,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     private fun observe() {
-        viewModel.successImage.observe(this) { Log.d("UploadImage", "observe: success") }
-        viewModel.failureImage.observe(this) { shortShowToast("이미지를 업로드하는데 실패했어요") }
+        viewModel.successImage.observe(this) {
+            Log.d("UploadImage", "observe: success")
+        }
+        viewModel.failureImage.observe(this) {
+            shortShowToast("이미지를 업로드하는데 실패했어요")
+        }
         viewModel.successName.observe(this) {
             binding.loading.visibility = View.INVISIBLE
             setName(changedName!!)
         }
-        viewModel.failureName.observe(this) { shortShowToast("이름 변경을 실패했어요") }
-    }
+        viewModel.failureName.observe(this) {
+            shortShowToast("이름 변경을 실패했어요")
+        }
+    } 
 
     private fun setName(str: String) {
         binding.profileTextviewName.text = str

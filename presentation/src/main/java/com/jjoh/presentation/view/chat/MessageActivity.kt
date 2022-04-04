@@ -1,7 +1,6 @@
 package com.jjoh.presentation.view.chat
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.Gravity
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,11 +27,9 @@ import com.jjoh.presentation.databinding.ActivityMessageBinding
 import com.jjoh.presentation.view.model.ChatModel
 import com.jjoh.presentation.view.model.ChatModel.Comment
 import com.jjoh.presentation.view.model.Friend
-import com.jjoh.presentation.viewmodel.ChattingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 @AndroidEntryPoint
 class MessageActivity : BaseActivity<ActivityMessageBinding>(R.layout.activity_message) {
@@ -109,8 +105,7 @@ class MessageActivity : BaseActivity<ActivityMessageBinding>(R.layout.activity_m
             })
     }
 
-    inner class RecyclerViewAdapter :
-        RecyclerView.Adapter<RecyclerViewAdapter.MessageViewHolder>() {
+    inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.MessageViewHolder>() {
 
         private val comments = ArrayList<Comment>()
         private var friend: Friend? = null
@@ -153,37 +148,37 @@ class MessageActivity : BaseActivity<ActivityMessageBinding>(R.layout.activity_m
 
         @SuppressLint("RtlHardcoded")
         override fun onBindViewHolder(holder: RecyclerViewAdapter.MessageViewHolder, position: Int) {
-            holder.textView_message.textSize = 20F
-            holder.textView_message.text = comments[position].message
-            holder.textView_time.text = comments[position].time
+            holder.textViewMessage.textSize = 20F
+            holder.textViewMessage.text = comments[position].message
+            holder.textViewTime.text = comments[position].time
 
             if (comments[position].uid.equals(uid)) {
-                holder.textView_message.setBackgroundResource(R.drawable.rightbubble)
-                holder.textView_name.visibility = View.INVISIBLE
-                holder.layout_destination.visibility = View.INVISIBLE
-                holder.layout_main.gravity = Gravity.RIGHT
+                holder.textViewMessage.setBackgroundResource(R.drawable.rightbubble)
+                holder.textViewName.visibility = View.INVISIBLE
+                holder.layoutDestination.visibility = View.INVISIBLE
+                holder.layoutMain.gravity = Gravity.RIGHT
 
             } else {
                 Glide.with(holder.itemView.context)
                     .load(friend?.profileImageUrl)
                     .apply(RequestOptions().circleCrop())
-                    .into(holder.imageView_profile)
-                holder.textView_name.text = friend?.userName
-                holder.layout_destination.visibility = View.VISIBLE
-                holder.textView_name.visibility = View.VISIBLE
-                holder.textView_message.setBackgroundResource(R.drawable.leftbubble)
-                holder.layout_main.gravity = Gravity.LEFT
+                    .into(holder.imageViewProfile)
+
+                holder.textViewName.text = friend?.userName
+                holder.layoutDestination.visibility = View.VISIBLE
+                holder.textViewName.visibility = View.VISIBLE
+                holder.textViewMessage.setBackgroundResource(R.drawable.leftbubble)
+                holder.layoutMain.gravity = Gravity.LEFT
             }
         }
 
         inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val textView_message: TextView = view.findViewById(R.id.messageItem_textView_message)
-            val textView_name: TextView = view.findViewById(R.id.messageItem_textview_name)
-            val imageView_profile: ImageView = view.findViewById(R.id.messageItem_imageview_profile)
-            val layout_destination: LinearLayout =
-                view.findViewById(R.id.messageItem_layout_destination)
-            val layout_main: LinearLayout = view.findViewById(R.id.messageItem_linearlayout_main)
-            val textView_time: TextView = view.findViewById(R.id.messageItem_textView_time)
+            val textViewMessage: TextView = view.findViewById(R.id.messageItem_textView_message)
+            val textViewName: TextView = view.findViewById(R.id.messageItem_textview_name)
+            val imageViewProfile: ImageView = view.findViewById(R.id.messageItem_imageview_profile)
+            val layoutDestination: LinearLayout = view.findViewById(R.id.messageItem_layout_destination)
+            val layoutMain: LinearLayout = view.findViewById(R.id.messageItem_linearlayout_main)
+            val textViewTime: TextView = view.findViewById(R.id.messageItem_textView_time)
         }
 
         override fun getItemCount(): Int {

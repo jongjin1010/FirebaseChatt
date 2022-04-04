@@ -34,7 +34,6 @@ import kotlin.collections.ArrayList
 @AndroidEntryPoint
 class ChatFragment : BaseFragment<FragmentChatBinding>(R.layout.fragment_chat) {
     private val viewModel by activityViewModels<ChatListViewModel>()
-    private var uid: String? = null
 
     companion object {
         fun newInstance(): ChatFragment {
@@ -45,25 +44,37 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(R.layout.fragment_chat) {
     override fun init() {
         binding.fragment = this
 
-        viewModel.getAllUid(Firebase.auth.currentUser?.uid.toString())
+        val recyclerView = binding.chatfragmentRecyclerview
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = RecyclerViewAdapter()
     }
 
 
     @SuppressLint("NotifyDataSetChanged")
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder>() {
-        private val destinationUsers: ArrayList<String> = arrayListOf()
+        private val chatModel = ArrayList<ChatModel>()
+        private var uid : String? = null
+        private val destinationUsers : ArrayList<String> = arrayListOf()
 
         init {
-            notifyDataSetChanged()
+            uid = Firebase.auth.currentUser?.uid.toString()
+            println(uid)
+            FirebaseDatabase.getInstance().reference.child("chatrooms").orderByChild("users/$uid").equalTo(true).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) { }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    chatModel.clear()
+                    for(data in snapshot.children){
+                        chatModel.add(data.getValue<ChatModel>()!!)
+                        println(data)
+                    }
+                    notifyDataSetChanged()
+                }
+            })
         }
 
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): RecyclerViewAdapter.CustomViewHolder {
-            return CustomViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false)
-            )
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapter.CustomViewHolder {
+            return CustomViewHolder(LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false))
         }
 
         inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -83,12 +94,12 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(R.layout.fragment_chat) {
                 }
             }
 
-            val fireDatabase = FirebaseDatabase.getInstance().reference
 
-            fireDatabase.child("users").child("$destinationUid").addListenerForSingleValueEvent(object : ValueEventListener {
+            FirebaseDatabase.getInstance().reference.child("users").child("$destinationUid").addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(error: DatabaseError) {}
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val friend = snapshot.getValue<Friend>()
+
                         Glide.with(holder.itemView.context).load(friend?.profileImageUrl)
                             .apply(RequestOptions().circleCrop()).into(holder.image)
                         holder.title.text = friend?.userName
@@ -109,17 +120,5 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(R.layout.fragment_chat) {
         }
 
         override fun getItemCount(): Int = chatModel.size
-    }
-
-    private fun observe() {
-        viewModel.success.observe(this) {
-            val recyclerView = binding.chatfragmentRecyclerview
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            recyclerView.adapter = RecyclerViewAdapter()
-        }
-
-        viewModel.failure.observe(this) {
-            shortShowToast("목록을 불러오지 못했습니다")
-        }
     }
 }

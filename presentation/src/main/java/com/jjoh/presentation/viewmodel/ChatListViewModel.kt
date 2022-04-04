@@ -28,11 +28,13 @@ class ChatListViewModel @Inject constructor(
     fun getAllUid(uid: String?) = viewModelScope.launch {
         chatListUseCase.execute(uid).addOnSuccessListener { snapshot ->
             chatModel.clear()
+
             for (data in snapshot.children) {
                 chatModel.add(data.getValue<ChatModel>()!!)
                 println(data)
             }
             _success.call()
+
         }.addOnCanceledListener {
             _failure.call()
         }
